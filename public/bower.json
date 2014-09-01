@@ -1,0 +1,22 @@
+{
+    "name": "Beany",
+    "description": "HTML5-Canvas-MiniGame",
+    "version": "0.0.1",
+    "authors": {
+    	"name": "Das PeTe",
+    	"email": "daspetemail@gmail.com"
+    },
+    "homepage": "http://daspete.at",
+    "repository": {
+    	"type": "git",
+		"url": "git://github.com/daspete/beany.git"
+    },
+    "dependencies": {
+        "jquery": "1.11.1",
+        "backbone": null,
+        "underscore": null,
+        "requirejs": null,
+        "requirejs-text": null,
+        "phaser-official": null
+    }
+}
