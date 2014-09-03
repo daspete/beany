@@ -9,10 +9,11 @@ define([
 
 	var game = null;
 	var nextStage = null;
+	var settings = null;
 
 	var Load = {
 		preload: function(){
-			Sky.init(game,0,"easy");
+			Sky.init(game,settings);
 			Sky.preload();
 
 			HUD.init(game);
@@ -30,8 +31,9 @@ define([
 	};
 
 	return {
-		init: function(_game, _nextStage){
+		init: function(_game, _settings, _nextStage){
 			game = _game;
+			settings = _settings;
 			nextStage = _nextStage;
 
 			console.log("LOAD init");

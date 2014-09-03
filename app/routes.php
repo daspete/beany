@@ -15,3 +15,19 @@ Route::get('/', function()
 {
 	return View::make('layout');
 });
+
+Route::group(array("prefix" => "get"), function(){
+	Route::get("game", function(){
+		return Response::json(array(
+			"result" => Gamesettings::where("active", "=", true)
+									->first(array(
+										"appName",
+										"canvasWidth",
+										"canvasHeight",
+										"gameLevel",
+										"gameSpeed",
+										"gameLevelMultiplier"
+									))->toArray()
+		));
+	});
+});

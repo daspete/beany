@@ -5,6 +5,7 @@ define([
 ], function(){
 
 	var game = null;
+	var settings = null;
 	var nextState = null;
 
 	var End = {
@@ -16,8 +17,9 @@ define([
 	};
 
 	return {
-		init: function(_game, _nextState){
+		init: function(_game, _settings, _nextState){
 			game = _game;
+			settings = _settings;
 			nextState = _nextState;
 		},
 		getState: function(){

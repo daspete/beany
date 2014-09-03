@@ -8,6 +8,7 @@ define([
 ], function(Sky, HUD, Player, Platform){
 
 	var game = null;
+	var settings = null;
 	var nextState = null;
 
 	var Play = {
@@ -44,8 +45,9 @@ define([
 	};
 
 	return {
-		init: function(_game, _nextState){
+		init: function(_game, _settings, _nextState){
 			game = _game;
+			settings = _settings;
 			nextState = _nextState;
 		},
 		getState: function(){
