@@ -2,9 +2,10 @@ define([
 
 	"game/modules/backgrounds/sky",
 	"game/modules/gui/hud",
-	"game/modules/player/player"
+	"game/modules/player/player",
+	"game/modules/world/platform"
 
-], function(Sky, HUD, Player){
+], function(Sky, HUD, Player, Platform){
 
 	var game = null;
 	var nextStage = null;
@@ -18,6 +19,9 @@ define([
 
 			Player.init(game);
 			Player.preload();
+
+			Platform.init(game);
+			Platform.preload();
 		},
 
 		create: function(){

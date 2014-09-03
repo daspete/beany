@@ -18,10 +18,9 @@ define([
 			sky = game.add.tileSprite(0,0,800,400, "sky");
 		},
 		update: function(){
-			sky.tilePosition.y += 2;
+			sky.tilePosition.y -= 0.3;
 		}
 	};
 
 	return Sky;
-
 });

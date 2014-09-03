@@ -9,9 +9,11 @@ define([
 		lives = null,
 		score = null,
 		beany = null,
-		cursors = null;
-		jumpButton = null;
-		jumpTimer = null;
+		platforms = null,
+		cursors = null,
+		jumpButton = null,
+		jumpTimer = null,
+		onFloor = null,
 		facing = null;
 
 	var Player = {
@@ -22,18 +24,20 @@ define([
 			game.load.spritesheet("beany", "assets/images/player/beanySprite.png", 36,50);
 		},
 		create: function(settings){
+			onFloor = false;
 			beany = game.add.sprite(32,50,"beany");
+			
 			beany.anchor.setTo(0.5,0.5);
+
 			beany.animations.add("left", [0,1,2], 10, true);
 			beany.animations.add("turn", [3], 20, true);
 			beany.animations.add("right", [4,5,6], 10, true);
 
-			game.physics.enable(beany, Phaser.Physics.ARCADE);
-
+			game.physics.arcade.enable(beany);
+			beany.checkWorldBounds = true;
 			beany.body.collideWorldBounds = true;
-			beany.body.maxVelocity.y = 500;
 			beany.body.gravity.y = 981;
-			
+
 			beany.health = settings.health;
 			
 			health = settings.health;
@@ -47,8 +51,19 @@ define([
 
 			facing = "right";
 		},
-		update: function(){
+		update: function(_platforms){
+			platforms = _platforms;
+
+			onFloor = false;
+
+			game.physics.arcade.collide(beany, platforms, function(){
+				onFloor = true;
+			});
+
+			HUD.updateScore(Math.round(platforms.position.y / 20));
+
 			beany.body.velocity.x = 0;
+
 			if(cursors.left.isDown){
 				beany.body.velocity.x = -200;
 
@@ -66,6 +81,7 @@ define([
 			}else{
 				if(facing != "idle"){
 					beany.animations.stop();
+
 					if(facing == "left"){
 						beany.frame = 0;
 					}else{
@@ -76,13 +92,10 @@ define([
 				}
 			}
 
-			if(jumpButton.isDown && beany.body.onFloor() && game.time.now > jumpTimer){
+			if(jumpButton.isDown && (onFloor || beany.body.onFloor()) && game.time.now > jumpTimer){
 				beany.body.velocity.y = -500;
 				jumpTimer = game.time.now + 700;
 			}
-		},
-		getBeany: function(){
-			return beany;
 		}
 	};
 

@@ -2,16 +2,17 @@ define([
 
 	"game/modules/backgrounds/sky",
 	"game/modules/gui/hud",
-	"game/modules/player/player"
+	"game/modules/player/player",
+	"game/modules/world/platform"
 
-], function(Sky, HUD, Player){
+], function(Sky, HUD, Player, Platform){
 
 	var game = null;
 	var nextState = null;
 
 	var Play = {
 		create: function(){
-			console.log("PLAYING");
+			game.physics.startSystem(Phaser.Physics.ARCADE);
 
 			var playerSettings = {
 				health: 100,
@@ -20,17 +21,25 @@ define([
 			};
 
 			Sky.create();
+
 			HUD.create(
 				playerSettings.health,
 				playerSettings.score,
 				playerSettings.lives
 			);
+			
 			Player.create(playerSettings);
+
+			Platform.create();
+			Platform.add();
+			game.time.events.loop(2000, Platform.add, this);
+
 		},
 
 		update: function(){
 			Sky.update();
-			Player.update();
+			Player.update(Platform.getPlatforms());
+			Platform.update();
 		}
 	};
 
@@ -38,8 +47,6 @@ define([
 		init: function(_game, _nextState){
 			game = _game;
 			nextState = _nextState;
-
-			console.log("PLAY init");
 		},
 		getState: function(){
 			return Play;
