@@ -1,8 +1,8 @@
 define([
 
+	"game/modules/gui/hud"
 
-
-], function(){
+], function(HUD){
 
 	var game = null;
 	var nextState = null;
@@ -10,6 +10,8 @@ define([
 
 	var Start = {
 		create: function(){
+			HUD.createTitle("BEANY\nPRESS SPACE TO BEGIN");
+
 			game.physics.startSystem(Phaser.Physics.ARCADE);
 
 			game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR).onDown.addOnce(function(){

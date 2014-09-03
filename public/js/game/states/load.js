@@ -1,15 +1,23 @@
 define([
 
+	"game/modules/backgrounds/sky",
+	"game/modules/gui/hud",
+	"game/modules/player/player"
 
-
-], function(){
+], function(Sky, HUD, Player){
 
 	var game = null;
 	var nextStage = null;
 
 	var Load = {
 		preload: function(){
+			Sky.init(game,0,"easy");
+			Sky.preload();
 
+			HUD.init(game);
+
+			Player.init(game);
+			Player.preload();
 		},
 
 		create: function(){
