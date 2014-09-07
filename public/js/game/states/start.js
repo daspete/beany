@@ -32,4 +32,4 @@ define([
 			return Start;
 		}
 	};
-});
+});beany

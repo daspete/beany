@@ -20,14 +20,32 @@ Route::group(array("prefix" => "get"), function(){
 	Route::get("game", function(){
 		return Response::json(array(
 			"result" => Gamesettings::where("active", "=", true)
-									->first(array(
-										"appName",
-										"canvasWidth",
-										"canvasHeight",
-										"gameLevel",
-										"gameSpeed",
-										"gameLevelMultiplier"
-									))->toArray()
+							->first(array(
+								"appName",
+								"canvasWidth",
+								"canvasHeight",
+								"gameLevel",
+								"gameSpeed",
+								"gameLevelMultiplier"
+							))->toArray()
 		));
+	});
+
+	Route::get("platforms", function(){
+		return Response::json(array(
+			"result" => Platforms::where("active", "=", true)
+							->get(array(
+								"id",
+								"type",
+								"posX",
+								"posY"
+							))->toArray()
+		));
+	});
+});
+
+Route::group(array("prefix" => "editor"), function(){
+	Route::get("/", function(){
+		return View::make("editor.layout");
 	});
 });
