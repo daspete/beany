@@ -11,10 +11,10 @@ require.config({
 
 require([
 
-	"app/views/app"
+	"views/editor"
 	
-], function(AppView){
+], function(EditorView){
 	
-	var app_view = new AppView();
+	var editorView = new EditorView();
 
 });

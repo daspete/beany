@@ -8,13 +8,11 @@ define([
 
 ){
 
-	var PlatformModel = Backbone.Model.extend({
+	var LevelModel = Backbone.Model.extend({
 
 		defaults: {
-			id: 0,
-			type: 1,
-			posX: 0,
-			posY: 0
+			id: 1,
+			name: "Tutorial Level"
 		},
 
 		initialize: function(){
@@ -23,5 +21,5 @@ define([
 		
 	});
 
-	return PlatformModel;
+	return LevelModel;
 });

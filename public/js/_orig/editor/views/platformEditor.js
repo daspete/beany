@@ -28,6 +28,8 @@ define([
 		initialize: function(){
 			var platformEditorView = this;
 
+			this.level = 1;
+
 			this.platformCollection = new PlatformCollection();
 			this.platformCollection.fetch({
 				success: function(){
@@ -54,7 +56,32 @@ define([
 		onClick: function(e){
 			e.stopImmediatePropagation();
 
-			console.log("Click");
+			var nextID = 0;
+
+			if(this.platformCollection.length > 0){
+				nextID = parseInt(this.platformCollection.last().get("id"));
+			}
+
+			var posX = Math.ceil(e.clientX / 20) - 1;
+			var posY = Math.ceil(e.clientY / 20) - 1;
+
+			var platform = new PlatformModel({
+				id: nextID + 1,
+				type: 1,
+				posX: posX,
+				posY: posY,
+				level: this.level
+			});
+
+			this.platformCollection.create(platform);
+
+			var platformView = new PlatformView({ model: platform });
+
+			this.$el.append(platformView.el);
+		},
+
+		setLevel: function(level){
+			this.level = level;
 		}
 
 	});

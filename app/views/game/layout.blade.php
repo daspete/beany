@@ -5,7 +5,7 @@
 	<title>BEANY</title>
 
 	<link rel="stylesheet" href="css/styles.css"/>
-	<script type="text/javascript" src="js/vendor/requirejs/require.js" data-main="js/init"></script>
+	<script type="text/javascript" src="js/vendor/requirejs/require.js" data-main="js/initGame"></script>
 
 </head>
 <body>

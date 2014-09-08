@@ -68,9 +68,11 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   position: relative;
   width: 800px;
   height: 400px;
-  background: url('/assets/images/editor/raster.png?1410123165') top left repeat;
+  background-color: transparent;
+  background-image: repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1) 1px, transparent 1px, transparent 20px), repeating-linear-gradient(-90deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1) 1px, transparent 1px, transparent 20px);
+  background-size: 20px 20px;
 }
-/* line 7, ../sass/editor/_editor.sass */
+/* line 12, ../sass/editor/_editor.sass */
 .platformEditor .platform {
   position: absolute;
   width: 20px;

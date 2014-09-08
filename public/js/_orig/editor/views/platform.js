@@ -19,7 +19,8 @@ define([
 				"data-id": this.model.get("id"),
 				"data-type": this.model.get("type"),
 				"data-posx": this.model.get("posX"),
-				"data-posy": this.model.get("posY")
+				"data-posy": this.model.get("posY"),
+				"data-level": this.model.get("level")
 			}
 		},
 
@@ -37,7 +38,7 @@ define([
 
 			this.$el.css({
 				"top": (platformModel.get("posY")) * 20,
-				"left": (platformModel.get("posX")) * 20 - 1
+				"left": (platformModel.get("posX")) * 20
 			});
 		},
 

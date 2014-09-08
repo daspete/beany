@@ -3,14 +3,14 @@ define([
 	"jquery",
 	"backbone",
 	"views/settingsEditor",
-	"views/platformEditor"
+	"views/levelEditor"
 
 ], function(
 
 	$, 
 	Backbone, 
 	SettingsEditorView, 
-	PlatformEditorView
+	LevelEditorView
 
 ){
 
@@ -20,12 +20,12 @@ define([
 
 		initialize: function(){
 
-			this.platformEditorView = new PlatformEditorView();
+			this.levelEditorView = new LevelEditorView();
 			this.render();
 		},
 
 		render: function(){
-			this.$el.append(this.platformEditorView.el);
+			this.$el.append(this.levelEditorView.el);
 		}
 
 	});

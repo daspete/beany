@@ -11,54 +11,24 @@
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('layout');
+Route::get('/', function(){
+	return View::make('game.layout');
 });
-
-Route::group(array("prefix" => "get"), function(){
-	Route::get("game", function(){
-		return Response::json(array(
-			"result" => Gamesettings::where("active", "=", true)
-							->first(array(
-								"appName",
-								"canvasWidth",
-								"canvasHeight",
-								"gameLevel",
-								"gameSpeed",
-								"gameLevelMultiplier"
-							))->toArray()
-		));
-	});
-
-	Route::get("platforms", function(){
-		
-	});
-});
-
-Route::group(array("prefix" => "api"), function(){
-	Route::get("platform", function(){
-		return Response::json(array(
-			"result" => Platforms::where("active", "=", true)
-							->get(array(
-								"id",
-								"type",
-								"posX",
-								"posY"
-							))->toArray()
-		));
-	});
-
-	Route::delete("platform/{id}", function($id){
-		$platform = Platforms::find($id);
-		$platform->active = false;
-		$platform->save();
-	});
-});
-
 
 Route::group(array("prefix" => "editor"), function(){
+	
 	Route::get("/", function(){
 		return View::make("editor.layout");
 	});
+
+});
+
+Route::group(array("prefix" => "api"), function(){
+
+	Route::resource("levels", "LevelController");
+	Route::resource("levels.platforms", "LevelPlatformController");
+	Route::resource("platforms", "PlatformController");
+	Route::resource("enemies", "EnemyController");
+	Route::resource("items", "ItemController");
+
 });

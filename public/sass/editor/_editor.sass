@@ -2,7 +2,12 @@
 	position: relative
 	width: $editorWidth
 	height: $editorHeight
-	background: $editorBackground
+	//background: $editorBackground
+	background-color: transparent
+	background-image: repeating-linear-gradient(0deg, $editorGridColor, $editorGridColor 1px, transparent 1px, transparent $platformWidth),repeating-linear-gradient(-90deg, $editorGridColor, $editorGridColor 1px, transparent 1px, transparent $platformHeight)
+	background-size: $platformWidth $platformHeight
+
+
 
 	.platform
 		position: absolute
