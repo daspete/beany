@@ -3,14 +3,23 @@ define([
 	"backbone",
 	"models/platform"
 
-], function(Backbone, PlatformModel){
+], function(
+
+	Backbone, 
+	PlatformModel
+
+){
 
 	var PlatformCollection = Backbone.Collection.extend({
+
 		model: PlatformModel,
-		url: "get/platforms",
+
+		url: "api/platform",
+
 		parse: function(data){
 			return data.result;
 		}
+		
 	});
 
 	return PlatformCollection;

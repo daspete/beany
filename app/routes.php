@@ -32,6 +32,12 @@ Route::group(array("prefix" => "get"), function(){
 	});
 
 	Route::get("platforms", function(){
+		
+	});
+});
+
+Route::group(array("prefix" => "api"), function(){
+	Route::get("platform", function(){
 		return Response::json(array(
 			"result" => Platforms::where("active", "=", true)
 							->get(array(
@@ -42,7 +48,14 @@ Route::group(array("prefix" => "get"), function(){
 							))->toArray()
 		));
 	});
+
+	Route::delete("platform/{id}", function($id){
+		$platform = Platforms::find($id);
+		$platform->active = false;
+		$platform->save();
+	});
 });
+
 
 Route::group(array("prefix" => "editor"), function(){
 	Route::get("/", function(){

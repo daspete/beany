@@ -2,9 +2,14 @@ define([
 
 	"backbone"
 
-], function(Backbone){
+], function(
+
+	Backbone
+
+){
 
 	var PlatformModel = Backbone.Model.extend({
+
 		defaults: {
 			id: 0,
 			type: 1,
@@ -15,6 +20,7 @@ define([
 		initialize: function(){
 
 		}	
+		
 	});
 
 	return PlatformModel;
