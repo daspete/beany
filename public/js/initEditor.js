@@ -5,7 +5,8 @@ require.config({
 		underscore: "vendor/underscore/underscore-min",
 		backbone: "vendor/backbone/backbone",
 		text: "vendor/requirejs-text/text",
-		phaser: "vendor/phaser-official/build/phaser.min"
+		phaser: "vendor/phaser-official/build/phaser.min",
+		"bootstrap": "maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"
 	}
 });
 

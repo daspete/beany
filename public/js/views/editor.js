@@ -3,14 +3,18 @@ define([
 	"jquery",
 	"underscore",
 	"backbone",
-	"text!templates/editorContainer.html"
+	"text!templates/editorContainer.html",
+	"collections/levels",
+	"views/level/optionfield"
 
 ], function(
 
 	$,
 	_,
 	Backbone,
-	EditorContainerTemplate
+	EditorContainerTemplate,
+	LevelCollection,
+	LevelOptionFieldView
 
 ){
 
@@ -19,12 +23,41 @@ define([
 		el: $(".editorContainer"),
 		template:_.template(EditorContainerTemplate),
 
+		events: {
+			"click #createNewLevelButton": "createNewLevel",
+			"click #editLevelButton": "changeLevel",
+			"change #levelSelector": "changeLevel"
+		},
+
 		initialize: function(){
-			this.render();
+			var editorView = this;
+
+			this.levelCollection = new LevelCollection();
+			this.levelCollection.fetch({
+				success: function(){
+					editorView.render();
+				}
+			});
 		},
 
 		render: function(){
+			var editorView = this;
+
 			this.$el.html(this.template());
+
+			this.levelCollection.each(function(level){
+				var levelOptionFieldView = new LevelOptionFieldView({model: level});
+				
+				$(levelSelector).append(levelOptionFieldView.el);
+			});
+		},
+
+		createNewLevel: function(){
+			console.log("create new level");
+		},
+
+		changeLevel: function(){
+			console.log("edit level");
 		}
 
 	});
