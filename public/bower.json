@@ -17,6 +17,7 @@
         "underscore": null,
         "requirejs": null,
         "requirejs-text": null,
-        "phaser-official": null
+        "phaser-official": null,
+        "semantic": null
     }
 }

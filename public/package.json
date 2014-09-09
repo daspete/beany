@@ -1,0 +1,11 @@
+{
+  "name": "beany",
+  "version": "0.0.1",
+  "devDependencies": {
+    "grunt": "",
+    "grunt-contrib-watch": "",
+    "grunt-contrib-sass": "",
+    "grunt-contrib-compass": "",
+    "grunt-contrib-requirejs":""
+  }
+}
