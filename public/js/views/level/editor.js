@@ -4,7 +4,7 @@ define([
 	"underscore",
 	"backbone",
 	"collections/levels",
-	"views/level/settings",
+	"views/level/settings/editor",
 	"views/platform/editor",
 	"text!templates/levelEditor/editor.html"
 
@@ -62,8 +62,13 @@ define([
 			var levelID = $(e.target).data("id").toString();
 			var level = (this.levelCollection.where({id: levelID}))[0];
 
+			$(".levelButton").removeClass("active");
+			$(e.target).addClass("active");
+
+
 			this.platformEditor.setLevel(level);
-			this.levelSettingsEditor.render(level);
+			this.levelSettingsEditor.levelCollection = this.levelCollection;
+			this.levelSettingsEditor.setLevel(level);
 		}
 
 	});
