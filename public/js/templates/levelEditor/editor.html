@@ -1,0 +1,32 @@
+<div class="levelEditorTopMenu row">
+	
+	<div class="col-xs-3">
+		
+
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h3 class="panel-title">LEVELEDITOR</h3>
+			</div>
+			<div class="panel-body">
+				<button class="btn btn-primary btn-xs btn-block">CREATE A NEW LEVEL</button>
+			</div>
+		</div>
+
+
+		<div class="panel panel-success">
+			<div class="panel-heading">
+				<h3 class="panel-title">EDIT LEVELS</h3>
+			</div>
+			<div class="panel-body">
+			<% _(levels).each(function(level){ %>
+				<button class="btn btn-success btn-xs btn-block levelButton" data-id="<%= level.id %>"><%= level.name %></button>
+			<% }); %>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-xs-9">
+		<div id="levelSettingsContainer"></div>
+		<div id="platformEditorContainer"></div>
+	</div>
+</div>

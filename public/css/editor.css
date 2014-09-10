@@ -1,14 +1,14 @@
 /* line 1, ../sass/editor/_editor.sass */
-.platformEditor {
-  position: relative;
+#platformEditorContainer {
+  position: absolute;
   width: 800px;
   height: 400px;
   background-color: transparent;
   background-image: repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1) 1px, transparent 1px, transparent 20px), repeating-linear-gradient(-90deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1) 1px, transparent 1px, transparent 20px);
   background-size: 20px 20px;
 }
-/* line 12, ../sass/editor/_editor.sass */
-.platformEditor .platform {
+/* line 9, ../sass/editor/_editor.sass */
+#platformEditorContainer .platform {
   position: absolute;
   width: 20px;
   height: 20px;

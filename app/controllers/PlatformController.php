@@ -7,9 +7,15 @@ class PlatformController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function index()
-	{
-		//
+	public function index(){
+		if(Input::has("levelID")){
+			return Response::json(array(
+				"result" => Platforms::where("level","=",Input::get("levelID"))
+								->orderBy("id")
+								->get(array("id", "type", "posX", "posY"))
+								->toArray()
+			));
+		}
 	}
 
 
