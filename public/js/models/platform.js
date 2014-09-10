@@ -10,6 +10,8 @@ define([
 
 	var PlatformModel = Backbone.Model.extend({
 
+		idAttribute: "id",
+
 		defaults: {
 			id: 0,
 			type: 1,

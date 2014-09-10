@@ -3,36 +3,29 @@ define([
 	"jquery",
 	"backbone",
 	"models/platform",
-	"collections/platforms",
-	"views/platform/platform"
+	"views/platform/platform",
+	"collections/platforms"
 
 ], function(
 
 	$,
 	Backbone,
 	PlatformModel,
-	PlatformCollection,
-	PlatformView
+	PlatformView,
+	PlatformCollection
 
 ){
 
 	var PlatformEditorView = Backbone.View.extend({
-
-		level: null,
-		platformCollection: null,
 
 		events: {
 			"mousemove": "onMouseMove",
 			"click": "onClick"
 		},
 
-
-		initialize: function(){
-
-		},
+		initialize: function(){},
 
 		render: function(){
-			
 			var platformEditor = this;
 
 			this.platformCollection.each(function(platform){
@@ -42,13 +35,11 @@ define([
 			});
 
 			this.delegateEvents();
-
 		},
 
 		onMouseMove: function(e){
 			var posX = e.clientX;
 			var posY = e.clientY;
-			console.log(posX);
 		},
 
 		onClick: function(e){
@@ -56,17 +47,10 @@ define([
 
 			var offset = this.$el.offset();
 
-			var nextID = 0;
-
-			if(this.platformCollection.length > 0){
-				nextID = parseInt(this.platformCollection.last().get("id"));
-			}
-
 			var posX = Math.ceil((e.clientX - offset.left) / 20) - 1;
 			var posY = Math.ceil((e.clientY - offset.top) / 20) - 1;
 
 			var platform = new PlatformModel({
-				id: nextID + 1,
 				type: 1,
 				posX: posX,
 				posY: posY,
@@ -74,7 +58,7 @@ define([
 			});
 
 			this.platformCollection.create(platform);
-
+			
 			var platformView = new PlatformView({ model: platform });
 
 			this.$el.append(platformView.el);
@@ -88,6 +72,7 @@ define([
 			this.$el.html("");
 
 			this.platformCollection = new PlatformCollection();
+
 			this.platformCollection.fetch({
 				data: $.param({
 					"levelID": platformEditor.level.get("id")
@@ -95,7 +80,7 @@ define([
 				success: function(){
 					platformEditor.render();
 				}
-			})
+			});
 		}
 
 	});

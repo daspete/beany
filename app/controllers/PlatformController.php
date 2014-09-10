@@ -25,8 +25,16 @@ class PlatformController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
-	{
+	public function show($id) {
+		//
+	}
+
+	/**
+	 * Store the specified resource in storage.
+	 *
+	 * @return Response
+	 */
+	public function store()	{
 		//
 	}
 
@@ -39,7 +47,18 @@ class PlatformController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		$platform = new Platforms;
+
+		$platform->type = Input::get("type");
+		$platform->posX = Input::get("posX");
+		$platform->posY = Input::get("posY");
+		$platform->level = Input::get("level");
+
+		$platform->save();
+
+		return Response::json(array(
+			"id" => $platform->id
+		));
 	}
 
 
@@ -51,7 +70,7 @@ class PlatformController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		$platform = Platforms::where("id", "=", $id)->first()->delete();
 	}
 
 

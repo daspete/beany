@@ -56,7 +56,6 @@ define([
 
 			this.platformEditor.$el = this.$("#platformEditorContainer");
 			this.levelSettingsEditor.$el = this.$("#levelSettingsContainer");
-
 		},
 
 		setLevel: function(e){
@@ -66,7 +65,6 @@ define([
 			this.platformEditor.setLevel(level);
 			this.levelSettingsEditor.render(level);
 		}
-
 
 	});
 
