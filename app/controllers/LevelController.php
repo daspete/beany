@@ -38,6 +38,16 @@ class LevelController extends \BaseController {
 	public function update($id)
 	{
 		//
+		$level = new Level;
+		$level->name = Input::get("name");
+		$level->width = Input::get("width");
+		$level->height = Input::get("height");
+		$level->save();
+
+		return Response::json(array(
+			"id" => $level->id
+		));
+
 	}
 
 

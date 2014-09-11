@@ -3,6 +3,7 @@ define([
 	"jquery",
 	"underscore",
 	"backbone",
+	"models/level",
 	"collections/levels",
 	"views/level/settings/editor",
 	"views/platform/editor",
@@ -13,6 +14,7 @@ define([
 	$,
 	_,
 	Backbone,
+	LevelModel,
 	LevelCollection,
 	LevelSettingsEditorView,
 	PlatformEditorView,
@@ -30,7 +32,8 @@ define([
 		template: _.template(LevelEditorTemplate),
 
 		events: {
-			"click .levelButton": "setLevel"
+			"click .levelButton": "setLevelFromButton",
+			"click .createLevelButton" : "createLevel"
 		},
 
 		initialize: function(){
@@ -58,17 +61,41 @@ define([
 			this.levelSettingsEditor.$el = this.$("#levelSettingsContainer");
 		},
 
-		setLevel: function(e){
+		setLevelFromButton: function(e){
 			var levelID = $(e.target).data("id").toString();
-			var level = (this.levelCollection.where({id: levelID}))[0];
+			var level = this.getLevel(levelID);
 
 			$(".levelButton").removeClass("active");
 			$(e.target).addClass("active");
 
+			this.setLevel(level);
+		},
 
+		getLevel: function(levelID){
+			var level = (this.levelCollection.where({id: levelID}))[0];
+
+			return level;
+		},
+
+		setLevel: function(level){
 			this.platformEditor.setLevel(level);
 			this.levelSettingsEditor.levelCollection = this.levelCollection;
 			this.levelSettingsEditor.setLevel(level);
+		},
+
+		createLevel: function(){
+			var levelEditor = this;
+
+			var level = new LevelModel();
+
+			var currentLevel = this.levelCollection.create(level, {
+				success: function(){
+					levelEditor.render();
+					levelEditor.setLevel(levelEditor.getLevel(currentLevel.get("id")))	
+				}
+			});
+
+			
 		}
 
 	});

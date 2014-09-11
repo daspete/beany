@@ -11,8 +11,11 @@ define([
 ){
 
 	var LevelCollection = Backbone.Collection.extend({
+
 		model: LevelModel,
+
 		url: "api/levels",
+
 		parse: function(data){
 			return data.result;
 		}

@@ -2,17 +2,21 @@ define([
 
 	"jquery",
 	"underscore",
-	"backbone"
+	"backbone",
+	"text!templates/levelEditor/settings/settings.html"
 
 ], function(
 
 	$,
 	_,
-	Backbone
+	Backbone,
+	LevelSettingsTemplate
 
 ){
 
 	var LevelSettingsEditorView = Backbone.View.extend({
+
+		template:_.template(LevelSettingsTemplate),
 
 		initialize: function(){},
 
@@ -21,7 +25,9 @@ define([
 		},
 
 		setLevel: function(level){
-
+			this.$el.html(this.template({
+				level: level.toJSON()
+			}));
 		}
 
 	});
