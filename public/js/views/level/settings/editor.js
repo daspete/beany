@@ -1,13 +1,14 @@
 define([
 
 	"jquery",
+	"underscore",
 	"backbone"
 
 ], function(
 
 	$,
-	Backbone,
-	LevelModel
+	_,
+	Backbone
 
 ){
 
