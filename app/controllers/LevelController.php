@@ -37,8 +37,13 @@ class LevelController extends \BaseController {
 	 */
 	public function update($id)
 	{
+		if($id != 0){
+			$level = Level::where("id","=", $id)->first();
+		}else{
+			$level = new Level;	
+		}
 		//
-		$level = new Level;
+		
 		$level->name = Input::get("name");
 		$level->width = Input::get("width");
 		$level->height = Input::get("height");

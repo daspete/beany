@@ -18,16 +18,34 @@ define([
 
 		template:_.template(LevelSettingsTemplate),
 
+		level: null,
+
+		events: {
+			"focusout #levelName": "setLevelName"
+		},
+
 		initialize: function(){},
 
 		render: function(){
+			var levelSettingsEditor = this;
 
+			this.$el.html(this.template({
+				level: levelSettingsEditor.level.toJSON()
+			}));
+
+			this.delegateEvents();
 		},
 
 		setLevel: function(level){
-			this.$el.html(this.template({
-				level: level.toJSON()
-			}));
+			this.level = level;
+
+			this.render();
+		},
+
+		setLevelName: function(e){
+			this.level.set("name", $(e.target).val());
+			$(".levelButton[data-id='"+this.level.get("id")+"']").html($(e.target).val());
+			this.level.save();
 		}
 
 	});
